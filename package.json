@@ -1,0 +1,41 @@
+{
+  "name": "lockbox-server",
+  "version": "1.0.0",
+  "description": "The full official server implementation of Lockbox, my protocol for note-dropping.",
+  "keywords": [
+    "lockbox",
+    "privacy",
+    "notes",
+    "secure"
+  ],
+  "homepage": "https://github.com/aelithron/lockbox-server#readme",
+  "bugs": {
+    "url": "https://github.com/aelithron/lockbox-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aelithron/lockbox-server.git"
+  },
+  "license": "MIT",
+  "author": "Aelithron",
+  "type": "module",
+  "main": "dist/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node .",
+    "dev": "nodemon -x 'tsx' -w src -w package.json -w tsconfig.json -w .env src/server.ts",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "dotenv": "^17.2.2",
+    "eslint": "^9.36.0",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "npm": "^11.6.0",
+    "typescript": "^5.9.2"
+  }
+}
