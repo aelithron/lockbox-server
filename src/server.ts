@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { KeyType, verifyAuth } from './db';
 
-import { router as openBox } from "./open";
+import { router as openBox } from "./box";
 
 dotenv.config();
 export const app: Express = express();
@@ -15,6 +15,7 @@ app.get("/", (req: Request, res: Response) => {
   res.json({
     server: "Lockbox Server",
     github_repo: "https://github.com/aelithron/lockbox-server",
+    uptime: Math.floor(process.uptime()) + "s",
     accessing_on: req.hostname
   });
 });
@@ -29,7 +30,7 @@ app.get('/verify', async (req: Request, res: Response) => {
   if (authToken.startsWith("Drop-Key")) {
     if (await verifyAuth(authToken.split("Drop-Key ")[1], KeyType.DropKey)) {
       res.status(200);
-      res.json({ status: true, message: "Successfully verified your Drop Key." });
+      res.json({ success: true, message: "Successfully verified your Drop Key." });
       return;
     } else {
       res.status(403);
@@ -39,7 +40,7 @@ app.get('/verify', async (req: Request, res: Response) => {
   } else if (authToken.startsWith("Unlock-Key")) {
     if (await verifyAuth(authToken.split("Unlock-Key ")[1], KeyType.UnlockKey)) {
       res.status(200);
-      res.json({ status: true, message: "Successfully verified your Unlock Key." });
+      res.json({ success: true, message: "Successfully verified your Unlock Key." });
       return;
     } else {
       res.status(403);

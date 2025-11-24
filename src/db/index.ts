@@ -1,3 +1,5 @@
+import { BoxItem } from "../../lockbox";
+
 export enum KeyType { DropKey, UnlockKey };
 export async function verifyAuth(key: string, type: KeyType): Promise<boolean> {
   // TODO: add database stuff
@@ -20,4 +22,10 @@ export async function verifyAuth(key: string, type: KeyType): Promise<boolean> {
     }
   }
   return false;
+}
+
+export async function readBox(unlockKey: string): Promise<BoxItem[]> {
+  // TODO: add database stuff
+  const demoBoxItems: BoxItem[] = [{ note: "demo data", addedAt: new Date() }, { note: "demo data 2", addedAt: new Date() }, { note: "demo data 3", addedAt: new Date() }];
+  return demoBoxItems;
 }
